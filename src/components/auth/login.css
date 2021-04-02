@@ -10,16 +10,32 @@
 }
 
 .itemRight{
-    padding: 10;
+    padding: 10px;
 }
 
 .containerTextlogin{
     display: flex;
     flex-direction: column;
-    max-width: 400;
-    min-width: 300;
+    align-content: center;
+    max-width: 400px;
+    min-width: 300px;
+    text-align: center;
 }
 
 .spaceDiv{
     height: 20px;
 }
+
+.link{
+    color: #757ce8;
+    margin-top: 3%;
+    text-decoration: none;
+}
+
+.link:hover{
+    text-decoration: underline;
+}
+
+
+/**********************************  FORM ***************************************************/
+

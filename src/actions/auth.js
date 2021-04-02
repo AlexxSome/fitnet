@@ -12,13 +12,17 @@ export const startLoginEmailPassword = (email, password) =>{
 export const startGoogleLogin =() =>{
     return(dispatch) => {
         firebase.auth().signInWithPopup( googleAuthProvider)
-            .then(userCredential => { console.log(userCredential)});
+            .then(({user}) => {
+                dispatch(
+                    login(user.uid, user.displayName, user.email)
+                );
+            });
     }
 }
 
-export const login = (uid, displayName) => ({
+export const login = (uid, displayName, email) => ({
     type: types.login,
-    payload: {uid, displayName}
+    payload: {uid, displayName, email}
 })
 
 

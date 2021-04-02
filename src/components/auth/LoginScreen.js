@@ -1,10 +1,12 @@
-import { Button, Grid, InputAdornment, TextField } from '@material-ui/core';
+import {Button, Grid, IconButton, InputAdornment, SvgIcon, TextField} from '@material-ui/core';
 import './login.css'
 import React from 'react'
 import { AccountCircle, LockRounded } from '@material-ui/icons';
 import {useForm} from "../../hooks/useForm";
 import {useDispatch} from "react-redux";
-import {login, startLoginEmailPassword} from "../../actions/auth";
+import {login, startGoogleLogin, startLoginEmailPassword} from "../../actions/auth";
+import GoogleButton from "react-google-button";
+import {Link} from "react-router-dom";
 
 export const LoginScreen = ({history}) => {
 
@@ -20,6 +22,10 @@ export const LoginScreen = ({history}) => {
     const handleLogin = ()=>{
         // history.replace('/');
         dispatch(startLoginEmailPassword(email,password));
+    }
+
+    const handleGoogleLogin = ()=>{
+        dispatch(startGoogleLogin());
     }
 
     return (
@@ -59,14 +65,20 @@ export const LoginScreen = ({history}) => {
                             InputProps={{startAdornment:(<InputAdornment position="start"><LockRounded /> </InputAdornment>)}}
                         />
                         <div className='spaceDiv'/>
+
                         <Button color='primary' variant='contained' onClick={handleLogin}>Ingresar</Button>
+                       <Link to="/auth/register" className="link">Create new account</Link>
+
                     </div>
-                    <Grid container justify='center'>
+                    <Grid container justify='center' spacing={2}>
                         <Grid item>
-                            <Button className='mx-1' variant='outlined' color='primary' href='https://google.cl/'>comunidad Fitnet</Button>
+                            <GoogleButton
+                                type="dark"
+                                onClick={ handleGoogleLogin }
+                            />
                         </Grid>
                         <Grid item>
-                            <Button className='mx-1' variant='outlined' color='primary'>Recordar contraseña</Button>
+
                         </Grid>
                     </Grid>
                     <div />

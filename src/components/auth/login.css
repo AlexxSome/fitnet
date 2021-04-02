@@ -22,6 +22,15 @@
     text-align: center;
 }
 
+.containerTextRegister{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    max-width: 55%;
+    min-width: 30%;
+    text-align: center;
+}
+
 .spaceDiv{
     height: 20px;
 }
@@ -34,6 +43,10 @@
 
 .link:hover{
     text-decoration: underline;
+}
+
+.tittle{
+    margin-bottom: 20px;
 }
 
 

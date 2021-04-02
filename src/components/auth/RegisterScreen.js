@@ -11,8 +11,6 @@ import {
 } from "@material-ui/core";
 import {Link} from "react-router-dom";
 
-
-const marginTop     = { marginTop: 5 }
 const marginGender  = { marginBottom: 15, marginTop: 15,  }
 
 export const RegisterScreen = () => {

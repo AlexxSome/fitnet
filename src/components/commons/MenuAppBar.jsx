@@ -6,8 +6,11 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import {useDispatch} from "react-redux";
+import {startLogout} from "../../actions/auth";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -22,10 +25,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function MenuAppBar() {
-    const classes = useStyles();
-    const [auth, setAuth] = React.useState(true);
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const open = Boolean(anchorEl);
+    const classes                   = useStyles();
+    const [auth, setAuth]           = React.useState(true);
+    const [anchorEl, setAnchorEl]   = React.useState(null);
+    const open                      = Boolean(anchorEl);
+    const dispatch                  = useDispatch();
 
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -37,6 +41,7 @@ export default function MenuAppBar() {
 
     const handleLogout = () =>{
         setAuth(false);
+        dispatch(startLogout());
     }
 
     return (
@@ -79,6 +84,15 @@ export default function MenuAppBar() {
                                 <MenuItem onClick={handleClose}>My account</MenuItem>
                                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
                             </Menu>
+                            <IconButton
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                onClick={handleLogout}
+                                color="inherit"
+                            >
+                                <ExitToAppIcon />
+                            </IconButton>
                         </div>
                     )}
                 </Toolbar>

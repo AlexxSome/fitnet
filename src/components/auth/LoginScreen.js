@@ -3,7 +3,7 @@ import './login.css'
 import React from 'react'
 import { AccountCircle, LockRounded } from '@material-ui/icons';
 import {useForm} from "../../hooks/useForm";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {startGoogleLogin, startLoginEmailPassword} from "../../actions/auth";
 import GoogleButton from "react-google-button";
 import {Link} from "react-router-dom";
@@ -11,7 +11,7 @@ import {Link} from "react-router-dom";
 export const LoginScreen = ({history}) => {
 
     const dispatch = useDispatch();
-
+    const {loading} = useSelector(state => state);
     const [formValues, handleInputChange] = useForm({
         email: '',
         password:''
@@ -19,9 +19,14 @@ export const LoginScreen = ({history}) => {
 
     const {email, password} = formValues;
 
-    const handleLogin = ()=>{
-        // history.replace('/');
-        dispatch(startLoginEmailPassword(email,password));
+    const handleLogin = async ()=>{
+        dispatch(startLoginEmailPassword(email,password, history));
+
+        // await console.log("login", responseLogin);
+        // if(responseLogin.user?.uid ){
+        //     history.replace('/');
+        // }
+
     }
 
     const handleGoogleLogin = ()=>{
@@ -51,14 +56,12 @@ export const LoginScreen = ({history}) => {
                         <TextField
                             label="Correo"
                             name="email"
-                            value={email}
                             onChange={handleInputChange}
                             margin="normal"
                             InputProps={{startAdornment:(<InputAdornment position="start"><AccountCircle  /></InputAdornment>),}}/>
                         <TextField
                             label="Contraseña"
                             name="password"
-                            value={password}
                             onChange={handleInputChange}
                             margin="normal"
                             type='password'
@@ -66,7 +69,7 @@ export const LoginScreen = ({history}) => {
                         />
                         <div className='spaceDiv'/>
 
-                        <Button color='primary' variant='contained' onClick={handleLogin}>Ingresar</Button>
+                        <Button color='primary' disabled={loading} variant='contained' onClick={handleLogin}>Ingresar</Button>
                        <Link to="/auth/register" className="link">Create new account</Link>
 
                     </div>

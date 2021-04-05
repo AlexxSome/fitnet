@@ -16,7 +16,7 @@ export const HomeScreen = ({history}) => {
             <MenuAppBar />
             <h2 className='text-center mt-4'>Home :</h2>
             <Grid container className='contenedor' direction='column' alignItems='center' justify='space-between'>
-                <Button color='primary' variant='contained' onClick={handleLogout}>Logout</Button>
+                <Button color='primary' variant='contained' onClick={handleLogout}>Hola Mundo</Button>
             </Grid>
         </>
     )

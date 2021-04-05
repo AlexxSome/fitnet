@@ -64,10 +64,13 @@ export const FormSignup = () => {
             return false;
         }else if(password === undefined || password.length < 7){
             dispatch(setError("Password slould be least 7 characters", "password"));
+            return false;
         }else if(age<1 || age > 125){
             dispatch(setError("Enter valid age range", "age"));
+            return false;
         }else if(!conditions){
             dispatch(setError("Accept terms and conditions","conditions"));
+            return false;
         }
 
         dispatch(removeError());
@@ -81,71 +84,70 @@ export const FormSignup = () => {
             <TextField fullWidth
                        label='Name'
                        name="name"
-                       error={Boolean(input === 'name')}
-                       value={name}
                        onChange={handleInputChange}
                        placeholder="Enter your name"
                        style={margin}
-                       helperText={Boolean(input === 'name' && (msgError))}
+                       error={Boolean(input === 'name')}
+                       helperText={input === 'name' && (msgError)}
                        variant="outlined"
-                       required
             />
 
             <TextField fullWidth
                        label='Email'
                        name="email"
-                       error={input === 'email'}
-                       value={email}
                        onChange={handleInputChange}
                        placeholder="Enter your email"
                        style={margin}
                        variant="outlined"
+                       error={Boolean(input === 'email')}
+                       helperText={input === 'name' && (msgError)}
                        required
             />
 
             <TextField fullWidth
                        label='Phone Number'
-                       error={input === 'phoneNumber'}
                        name="phoneNumber"
-                       value={phoneNumber}
                        onChange={handleInputChange}
                        placeholder="Enter your phone number"
                        style={margin}
                        variant="outlined"
+                       error={input === 'phoneNumber'}
+                       helperText={input === 'name' && (msgError)}
                        required
             />
             <TextField fullWidth
                        label='Password'
-                       error={input === 'password'}
                        name="password"
-                       value={password}
                        onChange={handleInputChange}
                        type="password"
                        placeholder="Enter your password"
                        style={margin}
+                       error={input === 'password'}
+                       helperText={input === 'password' && (msgError)}
                        variant="outlined"
                        required
             />
             <TextField fullWidth
                        label='Confirm Password'
                        name="password2"
-                       error={input === 'password2'}
-                       value={password2}
                        onChange={handleInputChange}
                        type="password"
                        placeholder="Confirm your password"
                        style={margin}
+                       error={input === 'password2'}
+                       helperText={input === 'password2' && (msgError)}
                        variant="outlined"
                        required
             />
             <TextField fullWidth
                        label='Age'
                        name="age"
-                       value={age}
                        onChange={handleInputChange}
                        placeholder="Enter your age"
                        type="number"
                        style={margin}
+                       error={Boolean(input === 'age')}
+                       helperText={input === 'age' && (msgError)}
                        variant="outlined"
                        required
             />

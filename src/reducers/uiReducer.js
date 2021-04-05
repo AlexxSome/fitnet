@@ -17,7 +17,8 @@ export const uiReducer = (state = initialState, action) =>{
          case types.uiRemoveError:
              return {
                  ...state,
-                 msgError: null
+                 msgError: null,
+                 input: null
              }
          default:
              return state;

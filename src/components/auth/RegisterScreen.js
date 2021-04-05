@@ -17,7 +17,7 @@ export const RegisterScreen = () => {
             <Grid container className='itemRight' item xs={12} sm={6} alignItems='center' direction='column' justify='space-between'>
                 <div />
                 <div className='containerTextRegister'>
-                    <h3 className="tittle">Register new user</h3>
+                    <h2 className="tittle">Register new user</h2>
 
                     <FormSignup />
 

@@ -5,8 +5,8 @@ import {
     Button,
     Checkbox,
     FormControl,
-    FormControlLabel, FormHelperText,
-    FormLabel, Input, InputLabel,
+    FormControlLabel,
+    FormLabel, InputAdornment,
     Radio,
     RadioGroup,
     TextField
@@ -14,6 +14,8 @@ import {
 import {useForm} from "../../../hooks/useForm";
 import {useDispatch, useSelector} from "react-redux";
 import {removeError, setError} from "../../../actions/ui";
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import {registerWithEmailAndPassword} from "../../../actions/auth";
 
 const margin  = { marginBottom: 10, marginTop: 10,  }
 
@@ -37,8 +39,8 @@ export const FormSignup = () => {
         e.preventDefault();
         if(isValidForm()){
             console.log(name, email, phoneNumber, password, password2, gender, age, conditions);
+            dispatch( registerWithEmailAndPassword(name, email, phoneNumber, password, gender, age, conditions))
         }
-
     }
 
     const handleGenderChange = (event) => {
@@ -51,18 +53,24 @@ export const FormSignup = () => {
         setConditions(!conditions);
     }
 
-    const isValidForm = () =>{
+    const isValidForm = () => {
 
-        if(name.trim().length <= 1 ){
+        if (name === undefined || name.trim().length <= 1) {
             dispatch(setError("Name is required", "name"));
             return false;
-        }else if(email === undefined || !validator.isEmail(email)){
+        } else if (email === undefined || !validator.isEmail(email)) {
             dispatch(setError("Email not valid", "email"));
             return false;
-        }else if(password === undefined || password !== password2){
-            dispatch(setError("Passwords slould be match", "password2"));
+        }else if(phoneNumber === undefined || phoneNumber.length < 9){
+            dispatch(setError("Phone number should be least 9 characters", "phoneNumber"));
             return false;
-        }else if(password === undefined || password.length < 7){
+        }else if(phoneNumber.length > 15){
+            dispatch(setError("Phone number should be less than 16 characters", "phoneNumber"));
+            return false;
+        }else if(password !== password2){
+            dispatch(setError("Passwords slould be match", "password"));
+            return false;
+        }else if(password.length < 7){
             dispatch(setError("Password slould be least 7 characters", "password"));
             return false;
         }else if(age<1 || age > 125){
@@ -72,15 +80,12 @@ export const FormSignup = () => {
             dispatch(setError("Accept terms and conditions","conditions"));
             return false;
         }
-
         dispatch(removeError());
         return true;
     }
 
     return(
-
         <form onSubmit={handleRegister} >
-
             <TextField fullWidth
                        label='Name'
                        name="name"
@@ -90,6 +95,8 @@ export const FormSignup = () => {
                        error={Boolean(input === 'name')}
                        helperText={input === 'name' && (msgError)}
                        variant="outlined"
+                       focused={Boolean(input === 'name')}
+                       autoFocus={Boolean(input === 'name')}
             />
 
             <TextField fullWidth
@@ -100,8 +107,7 @@ export const FormSignup = () => {
                        style={margin}
                        variant="outlined"
                        error={Boolean(input === 'email')}
-                       helperText={input === 'name' && (msgError)}
-                       required
+                       helperText={input === 'email' && (msgError)}
             />
 
             <TextField fullWidth
@@ -111,9 +117,8 @@ export const FormSignup = () => {
                        placeholder="Enter your phone number"
                        style={margin}
                        variant="outlined"
-                       error={input === 'phoneNumber'}
-                       helperText={input === 'name' && (msgError)}
-                       required
+                       error={Boolean(input === 'phoneNumber')}
+                       helperText={input === 'phoneNumber' && (msgError)}
             />
             <TextField fullWidth
                        label='Password'
@@ -122,10 +127,15 @@ export const FormSignup = () => {
                        type="password"
                        placeholder="Enter your password"
                        style={margin}
-                       error={input === 'password'}
+                       error={Boolean(input === 'password')}
                        helperText={input === 'password' && (msgError)}
                        variant="outlined"
                        required
+                       InputProps={{ startAdornment: (
+                               <InputAdornment position="start">
+                                   <VpnKeyIcon />
+                               </InputAdornment>
+                           ),}}
             />
             <TextField fullWidth
                        label='Confirm Password'
@@ -134,10 +144,15 @@ export const FormSignup = () => {
                        type="password"
                        placeholder="Confirm your password"
                        style={margin}
-                       error={input === 'password2'}
+                       error={Boolean(input === 'password2')}
                        helperText={input === 'password2' && (msgError)}
                        variant="outlined"
                        required
+                       InputProps={{ startAdornment: (
+                               <InputAdornment position="start">
+                                   <VpnKeyIcon />
+                               </InputAdornment>
+                           ),}}
             />
             <TextField fullWidth
                        label='Age'
@@ -149,7 +164,6 @@ export const FormSignup = () => {
                        error={Boolean(input === 'age')}
                        helperText={input === 'age' && (msgError)}
                        variant="outlined"
-                       required
             />
 
             <FormControl component="fieldset"  style={margin} >

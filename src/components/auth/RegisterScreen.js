@@ -3,8 +3,6 @@ import { Grid } from "@material-ui/core";
 import {Link} from "react-router-dom";
 import {FormSignup} from "./forms/FormSignup";
 
-
-
 export const RegisterScreen = () => {
     return (
     <div >

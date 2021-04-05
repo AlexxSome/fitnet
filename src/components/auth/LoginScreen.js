@@ -1,10 +1,10 @@
-import {Button, Grid, IconButton, InputAdornment, SvgIcon, TextField} from '@material-ui/core';
+import {Button, Grid, InputAdornment, TextField} from '@material-ui/core';
 import './login.css'
 import React from 'react'
 import { AccountCircle, LockRounded } from '@material-ui/icons';
 import {useForm} from "../../hooks/useForm";
 import {useDispatch} from "react-redux";
-import {login, startGoogleLogin, startLoginEmailPassword} from "../../actions/auth";
+import {startGoogleLogin, startLoginEmailPassword} from "../../actions/auth";
 import GoogleButton from "react-google-button";
 import {Link} from "react-router-dom";
 

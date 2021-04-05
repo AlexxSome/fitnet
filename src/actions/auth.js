@@ -4,7 +4,7 @@ import {firebase, googleAuthProvider} from "../firebase/firebase-config";
 export const startLoginEmailPassword = (email, password) =>{
     return (dispatch) =>{
        setTimeout(()=>{
-           dispatch(login(123,'Alex'));
+           dispatch(login(0,''));
        },3500);
     }
 }

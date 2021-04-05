@@ -1,12 +1,11 @@
 import {Button, Grid} from '@material-ui/core';
-import React, { useState } from 'react'
+import React from 'react'
 import MenuAppBar from "../commons/MenuAppBar";
-import {startGoogleLogin} from "../../actions/auth";
 
 
 export const HomeScreen = ({history}) => {
 
-    const [rut, setRut] = useState([]);
+    // const [rut, setRut] = useState([]);
 
     const handleLogout = ()=>{
         history.replace('/auth');

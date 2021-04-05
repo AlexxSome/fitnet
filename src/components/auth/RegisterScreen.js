@@ -1,17 +1,7 @@
 import React from 'react';
-import {
-    Button,
-    Checkbox,
-    FormControl,
-    FormControlLabel,
-    FormLabel, Grid,
-    Radio,
-    RadioGroup,
-    TextField
-} from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import {Link} from "react-router-dom";
-
-const marginGender  = { marginBottom: 15, marginTop: 15,  }
+import {FormSignup} from "./forms/FormSignup";
 
 export const RegisterScreen = () => {
     return (
@@ -27,27 +17,9 @@ export const RegisterScreen = () => {
             <Grid container className='itemRight' item xs={12} sm={6} alignItems='center' direction='column' justify='space-between'>
                 <div />
                 <div className='containerTextRegister'>
-                    <h3 className="tittle">Register new user</h3>
-                    <form>
-                        <TextField fullWidth label='Name' placeholder="Enter your name" />
-                        <TextField fullWidth label='Email' placeholder="Enter your email" />
-                        <TextField fullWidth label='Phone Number' placeholder="Enter your phone number" />
-                        <TextField fullWidth label='Password' placeholder="Enter your password"/>
-                        <TextField fullWidth label='Confirm Password' placeholder="Confirm your password"/>
-                        <FormControl component="fieldset" style={marginGender} >
-                            <FormLabel component="legend">Gender</FormLabel>
-                            <RadioGroup aria-label="gender" name="gender" style={{ display: 'initial' }}>
-                                <FormControlLabel value="female" control={<Radio />} label="Female" />
-                                <FormControlLabel value="male" control={<Radio />} label="Male" />
-                            </RadioGroup>
-                        </FormControl>
-                        <TextField fullWidth label='Age' placeholder="Enter your age" type="number" />
-                        <FormControlLabel
-                            control={<Checkbox name="checkedA" />}
-                            label="I accept the terms and conditions."
-                        />
-                        <Button type='submit' variant='contained' color='primary'>Sign up</Button>
-                    </form>
+                    <h2 className="tittle">Register new user</h2>
+
+                    <FormSignup />
 
                     <Link to="/auth/login" className="link">Already registered?</Link>
                 </div>

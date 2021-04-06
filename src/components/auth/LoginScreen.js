@@ -19,14 +19,9 @@ export const LoginScreen = ({history}) => {
 
     const {email, password} = formValues;
 
-    const handleLogin = async ()=>{
+    const handleLogin = async (e)=>{
+        e.preventDefault();
         dispatch(startLoginEmailPassword(email,password, history));
-
-        // await console.log("login", responseLogin);
-        // if(responseLogin.user?.uid ){
-        //     history.replace('/');
-        // }
-
     }
 
     const handleGoogleLogin = ()=>{
@@ -53,23 +48,27 @@ export const LoginScreen = ({history}) => {
                                 alt='logo'
                             />
                         </Grid>
-                        <TextField
-                            label="Correo"
-                            name="email"
-                            onChange={handleInputChange}
-                            margin="normal"
-                            InputProps={{startAdornment:(<InputAdornment position="start"><AccountCircle  /></InputAdornment>),}}/>
-                        <TextField
-                            label="Contraseña"
-                            name="password"
-                            onChange={handleInputChange}
-                            margin="normal"
-                            type='password'
-                            InputProps={{startAdornment:(<InputAdornment position="start"><LockRounded /> </InputAdornment>)}}
-                        />
-                        <div className='spaceDiv'/>
+                        <form onSubmit={handleLogin} method="POST">
+                            <TextField
+                                label="Correo"
+                                name="email"
+                                onChange={handleInputChange}
+                                margin="normal"
+                                required
+                                InputProps={{startAdornment:(<InputAdornment position="start"><AccountCircle  /></InputAdornment>),}}/>
+                            <TextField
+                                label="Contraseña"
+                                name="password"
+                                onChange={handleInputChange}
+                                margin="normal"
+                                type='password'
+                                required
+                                InputProps={{startAdornment:(<InputAdornment position="start"><LockRounded /> </InputAdornment>)}}
+                            />
+                            <div className='spaceDiv'/>
 
-                        <Button color='primary' disabled={loading} variant='contained' onClick={handleLogin}>Ingresar</Button>
+                            <Button color='primary' type="submit" size="medium" disabled={loading} variant='contained'>Ingresar</Button>
+                        </form>
                        <Link to="/auth/register" className="link">Create new account</Link>
 
                     </div>

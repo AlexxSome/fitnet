@@ -9,7 +9,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {startLogout} from "../../actions/auth";
 
 const useStyles = makeStyles((theme) => ({
@@ -30,6 +30,7 @@ export default function MenuAppBar() {
     const [anchorEl, setAnchorEl]   = React.useState(null);
     const open                      = Boolean(anchorEl);
     const dispatch                  = useDispatch();
+    const {name}                    = useSelector(state => state.auth);
 
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -62,9 +63,12 @@ export default function MenuAppBar() {
                                 aria-haspopup="true"
                                 onClick={handleMenu}
                                 color="inherit"
+
                             >
                                 <AccountCircle />
+                                <p className="">{name}</p>
                             </IconButton>
+
                             <Menu
                                 id="menu-appbar"
                                 anchorEl={anchorEl}

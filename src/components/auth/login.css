@@ -3,6 +3,10 @@
     margin: 0px;
 }
 
+body{
+    margin: 0;
+}
+
 .contenedor{
     min-height: 100vh;
     min-width: 100%;
@@ -48,6 +52,22 @@
 .tittle{
     margin-bottom: 20px;
 }
+
+.facebook-button-class{
+    background-color: #3f51b5;
+    color: #FFF;
+}
+.facebook-button-class:hover{
+    background-color: #002984;
+}
+
+.facebook-icon-class{
+    margin: 7px;
+    background-color: #3f51b5;
+    color: #FFF;
+}
+
+
 
 
 /**********************************  FORM ***************************************************/

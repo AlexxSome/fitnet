@@ -1,0 +1,30 @@
+.scheduleView{
+    display: flex;
+    margin-left: 6vw;
+    margin-right: 2vw;
+    margin-top: 1vh;
+}
+
+@media (max-width: 1250px) {
+    .scheduleView {
+        margin-left: 8vw;
+    }
+}
+
+@media (max-width: 800px) {
+    .scheduleView {
+        margin-left: 10vw;
+    }
+}
+
+@media (max-width: 600px) {
+    .scheduleView {
+        margin-left: 12vw;
+    }
+}
+
+@media (max-width: 400px) {
+    .scheduleView {
+        margin-left: 16vw;
+    }
+}

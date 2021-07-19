@@ -1,5 +1,5 @@
 import {types} from '../types/types';
-import {firebase, googleAuthProvider} from "../firebase/firebase-config";
+import {facebookProvider, firebase, googleAuthProvider} from "../firebase/firebase-config";
 import {finishLoading, startLoading} from "./ui";
 import Swal from 'sweetalert2';
 
@@ -56,6 +56,19 @@ export const startGoogleLogin =() =>{
                     login(user.uid, user.displayName, user.email)
                 );
             });
+    }
+}
+
+export const startFacobookLogin=() =>{
+    return(dispatch) =>{
+        firebase.auth().signInWithPopup(facebookProvider)
+        .then(({user}) => {
+            console.log(user)
+            dispatch(
+                // login(user.uid, user.displayName, user.email)
+            );
+
+        });
     }
 }
 

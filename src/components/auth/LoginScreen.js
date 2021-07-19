@@ -1,12 +1,13 @@
-import {Button, Grid, InputAdornment, TextField} from '@material-ui/core';
+import {Button, Grid, IconButton, InputAdornment, TextField} from '@material-ui/core';
 import './login.css'
 import React from 'react'
 import { AccountCircle, LockRounded } from '@material-ui/icons';
 import {useForm} from "../../hooks/useForm";
 import {useDispatch, useSelector} from "react-redux";
-import {startGoogleLogin, startLoginEmailPassword} from "../../actions/auth";
+import {startFacobookLogin, startGoogleLogin, startLoginEmailPassword} from "../../actions/auth";
 import GoogleButton from "react-google-button";
 import {Link} from "react-router-dom";
+import FacebookIcon from '@material-ui/icons/Facebook';
 
 export const LoginScreen = ({history}) => {
 
@@ -26,6 +27,10 @@ export const LoginScreen = ({history}) => {
 
     const handleGoogleLogin = ()=>{
         dispatch(startGoogleLogin());
+    }
+
+    const handleFacebookLogin = async ()=>{
+        const res = await dispatch(startFacobookLogin());
     }
 
     return (
@@ -74,10 +79,18 @@ export const LoginScreen = ({history}) => {
                     </div>
                     <Grid container justify='center' spacing={2}>
                         <Grid item>
+
+                            {/* <Button size="large"  onClick={handleFacebookLogin}><IconButton color="primary" size="large"><FacebookIcon size="large" /></IconButton></Button> */}
+                            {/* <FacebookLogin size="small" textButton="Ingresar con Facebook" onClick={handleFacebookLogin} cssClass="facebook-button-class"/> */}
+                            <Button size="small" type="submit" color="primary" onClick={handleFacebookLogin} variant='contained' className="facebook-button-class"> <FacebookIcon className="facebook-icon-class" size="large" /> Ingresar con Facebook</Button>
+                            <div className='spaceDiv'/>
                             <GoogleButton
                                 type="dark"
+                                
+                                label="Ingresar con Google"
                                 onClick={ handleGoogleLogin }
-                            />
+                            />   
+                            <div className='spaceDiv'/>             
                         </Grid>
                         <Grid item>
 

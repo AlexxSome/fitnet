@@ -3,6 +3,7 @@ import { AppRouter } from './components/routers/AppRouter'
 import {Provider} from 'react-redux';
 import {store} from "./store/store";
 
+
 export const FitnetApp = () => {
     return (
         <Provider store={store}>

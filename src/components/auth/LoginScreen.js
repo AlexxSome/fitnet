@@ -79,12 +79,18 @@ export const LoginScreen = ({history}) => {
                     </div>
                     <Grid container justify='center' spacing={2}>
                         <Grid item>
-                            <Button size="large"  onClick={handleFacebookLogin}><IconButton color="primary" size="large"><FacebookIcon size="large" /></IconButton></Button>
+
+                            {/* <Button size="large"  onClick={handleFacebookLogin}><IconButton color="primary" size="large"><FacebookIcon size="large" /></IconButton></Button> */}
+                            {/* <FacebookLogin size="small" textButton="Ingresar con Facebook" onClick={handleFacebookLogin} cssClass="facebook-button-class"/> */}
+                            <Button size="small" type="submit" color="primary" onClick={handleFacebookLogin} variant='contained' className="facebook-button-class"> <FacebookIcon className="facebook-icon-class" size="large" /> Ingresar con Facebook</Button>
+                            <div className='spaceDiv'/>
                             <GoogleButton
                                 type="dark"
+                                
                                 label="Ingresar con Google"
                                 onClick={ handleGoogleLogin }
-                            />                
+                            />   
+                            <div className='spaceDiv'/>             
                         </Grid>
                         <Grid item>
 
